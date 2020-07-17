@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from functions import load_Data, rbgToGrayAndResize
-from models import model_KNN, model_SVM, joblib
+from models import model_KNN, model_SVM, model_LGR, joblib
 from sklearn.metrics import accuracy_score
 
 
@@ -45,6 +45,8 @@ if __name__ == "__main__":
     print(X_test.shape)
 
     model_KNN(X_train, Y_train, output_path)
+    model_SVM(X_train, Y_train, output_path)
+    model_LGR(X_train, Y_train, output_path)
 
     f = open('accuracy.txt', 'w')
 
@@ -64,19 +66,23 @@ if __name__ == "__main__":
     accuracy4 = accuracy_score(Y_test, svm.predict(X_test))
     f.write('svm: '+str(accuracy4)+'\n')
     print('acc4---done')
+    lgr = joblib.load(output_path+'\lgr.pkl')
+    accuracy5 = accuracy_score(Y_test, lgr.predict(X_test))
+    f.write('svm: '+str(accuracy5)+'\n')
+    print('acc5---done')
 
     knn_euclidean_3 = joblib.load(output_path+'\knn_euclidean_3.pkl')
-    accuracy1 = accuracy_score(Y_test, knn_euclidean_3.predict(X_test))
-    f.write('knn_euclidean_3: '+str(accuracy1)+'\n')
-    print('acc1---done')
+    accuracy6 = accuracy_score(Y_test, knn_euclidean_3.predict(X_test))
+    f.write('knn_euclidean_3: '+str(accuracy6)+'\n')
+    print('acc6---done')
     knn_euclidean_5 = joblib.load(output_path+'\knn_euclidean_5.pkl')
-    accuracy2 = accuracy_score(Y_test, knn_euclidean_5.predict(X_test))
-    f.write('knn_euclidean_5: '+str(accuracy2)+'\n')
-    print('acc2---done')
+    accuracy7 = accuracy_score(Y_test, knn_euclidean_5.predict(X_test))
+    f.write('knn_euclidean_5: '+str(accuracy7)+'\n')
+    print('acc7---done')
     knn_euclidean_7 = joblib.load(output_path+'\knn_euclidean_7.pkl')
-    accuracy3 = accuracy_score(Y_test, knn_euclidean_7.predict(X_test))
-    f.write('knn_euclidean_7: '+str(accuracy3)+'\n')
-    print('acc3---done')
+    accuracy8 = accuracy_score(Y_test, knn_euclidean_7.predict(X_test))
+    f.write('knn_euclidean_7: '+str(accuracy8)+'\n')
+    print('acc8---done')
 
     f.close()
 
