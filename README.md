@@ -1,4 +1,4 @@
-# DS102.K21_fruits_recognition
+# DS102.K21_fruits_classifier
 
 This REPOS uses a part of the dataset Fruit-360 : https://github.com/Horea94/Fruit-Images-Dataset // MIT License
 
